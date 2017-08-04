@@ -58,21 +58,36 @@ abstract class AbstractData
 
     /**
      * check if element $name exists
-     * @param string $name element name
+     * @param string $names elements names, divided by comma
      * @param bool $getValue return variable value if defined, or null if not
      * @return bool|mixed
      */
-    public function isSetted($name, $getValue = false)
+    public function isSetted($names, $getValue = false)
     {
         $ans = false;
         if ($getValue) {
             $ans = null;
         }
-        if (isset($this->dataStore__[$name])) {
+        $namesArr = explode(",", $names);
+        if (is_array($namesArr)) {
             if ($getValue) {
-                $ans = $this->dataStore__[$name];
+                $ans = array();
             } else {
                 $ans = true;
+            }
+            foreach ($namesArr as $el) {
+                if (isset($this->dataStore__[$el])) {
+                    if ($getValue) {
+                        $ans[$el] = $this->dataStore__[$el];
+                    }
+                } else {
+                    if ($getValue) {
+                        $ans = null;
+                    } else {
+                        $ans = false;
+                    }
+                    break;
+                }
             }
         }
         return $ans;
