@@ -92,4 +92,23 @@ abstract class AbstractData
         }
         return $ans;
     }
+
+    public function value($moveCursor = true)
+    {
+        if ($moveCursor) {
+            $ans = next($this->dataStore__);
+        } else {
+            $ans = current($this->dataStore__);
+        }
+        return $ans;
+    }
+
+    public function key($moveCursor = true)
+    {
+        $ans = key($this->dataStore__);
+        if ($moveCursor) {
+            next($this->dataStore__);
+        }
+        return $ans;
+    }
 }
