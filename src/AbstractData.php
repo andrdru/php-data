@@ -95,10 +95,9 @@ abstract class AbstractData
 
     public function value($moveCursor = true)
     {
+        $ans = current($this->dataStore__);
         if ($moveCursor) {
-            $ans = next($this->dataStore__);
-        } else {
-            $ans = current($this->dataStore__);
+            next($this->dataStore__);
         }
         return $ans;
     }
