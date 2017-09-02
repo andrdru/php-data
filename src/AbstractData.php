@@ -111,4 +111,9 @@ abstract class AbstractData
         }
         return $ans;
     }
+
+    public function reset()
+    {
+        reset($this->dataStore__);
+    }
 }
