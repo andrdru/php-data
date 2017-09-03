@@ -115,4 +115,9 @@ abstract class AbstractData
     {
         reset($this->dataStore__);
     }
+
+    public function count()
+    {
+        return count($this->dataStore__);
+    }
 }
