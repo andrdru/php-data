@@ -10,6 +10,16 @@ abstract class AbstractData
     private $dataStore__ = array();
 
     /**
+     * is data setted
+     * @param $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return isset($this->dataStore__[$name]);
+    }
+
+    /**
      * set data element
      * @param $name
      * @param $value
@@ -39,18 +49,15 @@ abstract class AbstractData
      * @param bool $skipNum =true skip numeric values in $array without err
      * @return bool
      */
-    public function setArray($array, $skipNum = true)
+    public function setArray(array $array, $skipNum = true): bool
     {
-        $ans = false;
-        if (is_array($array)) {
-            $ans = true;
-            foreach ($array as $k => $el) {
-                if (is_string($k)) {
-                    $this->$k = $el;
-                } elseif (!$skipNum) {
-                    $ans = false;
-                    break;
-                }
+        $ans = true;
+        foreach ($array as $k => $el) {
+            if (is_string($k)) {
+                $this->$k = $el;
+            } elseif (!$skipNum) {
+                $ans = false;
+                break;
             }
         }
         return $ans;
@@ -68,23 +75,21 @@ abstract class AbstractData
         if ($getValue) {
             $ans = null;
         }
-        $namesArr = explode(",", $names);
+        $namesArr = explode(',', $names);
         if (is_array($namesArr)) {
+            $ans = true;
             if ($getValue) {
                 $ans = array();
-            } else {
-                $ans = true;
             }
             foreach ($namesArr as $el) {
-                if (isset($this->dataStore__[$el])) {
+                if (isset($this->$el)) {
                     if ($getValue) {
                         $ans[$el] = $this->dataStore__[$el];
                     }
                 } else {
+                    $ans = false;
                     if ($getValue) {
                         $ans = null;
-                    } else {
-                        $ans = false;
                     }
                     break;
                 }
@@ -93,7 +98,7 @@ abstract class AbstractData
         return $ans;
     }
 
-    public function value($moveCursor = true)
+    public function value($moveCursor = true): mixed
     {
         $ans = current($this->dataStore__);
         if ($moveCursor) {
@@ -102,7 +107,7 @@ abstract class AbstractData
         return $ans;
     }
 
-    public function key($moveCursor = true)
+    public function key($moveCursor = true): mixed
     {
         $ans = key($this->dataStore__);
         if ($moveCursor) {
@@ -111,12 +116,12 @@ abstract class AbstractData
         return $ans;
     }
 
-    public function reset()
+    public function reset(): void
     {
         reset($this->dataStore__);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->dataStore__);
     }
