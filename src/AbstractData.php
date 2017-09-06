@@ -98,7 +98,7 @@ abstract class AbstractData
         return $ans;
     }
 
-    public function value($moveCursor = true): mixed
+    public function value($moveCursor = true)
     {
         $ans = current($this->dataStore__);
         if ($moveCursor) {
@@ -107,7 +107,7 @@ abstract class AbstractData
         return $ans;
     }
 
-    public function key($moveCursor = true): mixed
+    public function key($moveCursor = true)
     {
         $ans = key($this->dataStore__);
         if ($moveCursor) {
