@@ -64,6 +64,15 @@ abstract class AbstractData
     }
 
     /**
+     * get all stored data as array
+     * @return array
+     */
+    public function getArray(): array
+    {
+        return $this->dataStore__;
+    }
+
+    /**
      * check if element $name exists
      * @param string $names elements names, divided by comma
      * @param bool $getValue return variable value if defined, or null if not
