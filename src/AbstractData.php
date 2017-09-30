@@ -34,7 +34,7 @@ abstract class AbstractData
      * @param $name
      * @return bool|mixed
      */
-    public function __get($name)
+    public function &__get($name)
     {
         $ans = false;
         if ($this->isSetted($name)) {
