@@ -36,7 +36,7 @@ abstract class AbstractData
      */
     public function &__get($name)
     {
-        $ans = false;
+        $ans = null;
         if ($this->isSetted($name)) {
             $ans = $this->dataStore__[$name];
         }
