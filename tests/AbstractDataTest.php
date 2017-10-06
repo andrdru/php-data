@@ -16,6 +16,8 @@ class AbstractDataTest extends TestCase
     public function testSetGet()
     {
         $stub = $this->getMockForAbstractClass('Data\AbstractData');
+        $this->assertEquals(null, $stub->test);
+
         $stub->test = 123;
         $this->assertEquals(123, $stub->test);
         $stub->test = 456;
