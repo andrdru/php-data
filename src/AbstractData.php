@@ -5,6 +5,15 @@ namespace Data;
 abstract class AbstractData
 {
     /**
+     * AbstractData constructor.
+     * @param array $arr initial assoc array ['property'=>'value']
+     */
+    public function __construct(array $arr = array())
+    {
+        $this->setArray($arr);
+    }
+
+    /**
      * @var array $dataStore__ data store
      */
     private $dataStore__ = array();
