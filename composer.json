@@ -1,6 +1,6 @@
 {
   "name": "andrdru/data",
-  "type": "libriary",
+  "type": "library",
   "description": "yet another abstract data class",
   "license": "MIT",
   "authors": [
