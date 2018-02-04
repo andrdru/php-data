@@ -74,11 +74,20 @@ abstract class AbstractData
 
     /**
      * get all stored data as array
+     * @param string $keys ='' keys to get, comma delimited
      * @return array
      */
-    public function getArray(): array
+    public function getArray($keys = ''): array
     {
-        return $this->dataStore__;
+        if (!$keys) {
+            return $this->dataStore__;
+        }
+        $ans = array();
+        $keysArr = explode(',', $keys);
+        foreach ($keysArr as $el) {
+            $ans[$el] = $this->$el;
+        }
+        return $ans;
     }
 
     /**
