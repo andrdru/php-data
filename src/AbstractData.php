@@ -62,7 +62,7 @@ abstract class AbstractData
     {
         $ans = true;
         foreach ($array as $k => $el) {
-            if (is_string($k)) {
+            if (\is_string($k)) {
                 $this->$k = $el;
             } elseif (!$skipNum) {
                 $ans = false;
@@ -103,7 +103,7 @@ abstract class AbstractData
             $ans = null;
         }
         $namesArr = explode(',', $names);
-        if (is_array($namesArr)) {
+        if (\is_array($namesArr)) {
             $ans = true;
             if ($getValue) {
                 $ans = array();
@@ -150,6 +150,6 @@ abstract class AbstractData
 
     public function count(): int
     {
-        return count($this->dataStore__);
+        return \count($this->dataStore__);
     }
 }
