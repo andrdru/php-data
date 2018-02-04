@@ -90,7 +90,7 @@ class AbstractDataTest extends TestCase
         $this->assertEquals($arr, $ans);
 
         $ans = $stub->getArray('nokey');
-        $this->assertEquals(array('nokey' => null), $ans);
+        $this->assertEquals(array(), $ans);
 
         $ans = $stub->getArray('test2');
         $this->assertEquals(array('test2' => 456), $ans);

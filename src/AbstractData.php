@@ -85,7 +85,9 @@ abstract class AbstractData
         $ans = array();
         $keysArr = explode(',', $keys);
         foreach ($keysArr as $el) {
-            $ans[$el] = $this->$el;
+            if($this->isSetted($el)) {
+                $ans[$el] = $this->$el;
+            }
         }
         return $ans;
     }
