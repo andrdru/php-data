@@ -46,7 +46,7 @@ abstract class AbstractData
     public function &__get($name)
     {
         $ans = null;
-        if ($this->isSetted($name)) {
+        if ($this->isSet($name)) {
             $ans = $this->dataStore__[$name];
         }
         return $ans;
@@ -85,7 +85,7 @@ abstract class AbstractData
         $ans = array();
         $keysArr = explode(',', $keys);
         foreach ($keysArr as $el) {
-            if($this->isSetted($el)) {
+            if ($this->isSet($el)) {
                 $ans[$el] = $this->$el;
             }
         }
@@ -98,7 +98,7 @@ abstract class AbstractData
      * @param bool $getValue return variable value if defined, or null if not
      * @return bool|mixed
      */
-    public function isSetted($names, $getValue = false)
+    public function isSet($names, $getValue = false)
     {
         $ans = false;
         if ($getValue) {
@@ -153,5 +153,38 @@ abstract class AbstractData
     public function count(): int
     {
         return \count($this->dataStore__);
+    }
+
+    /**
+     * Set key of array with value
+     * @param $name
+     * @param $key
+     * @param $value
+     */
+    public function setArrEl($name, $key, $value): void
+    {
+        $arr = $this->$name;
+        if (!\is_array($arr)) {
+            $arr = array($key => $value);
+        } else {
+            $arr[$key] = $value;
+        }
+        $this->$name = $arr;
+    }
+
+    /**
+     * Append value to array
+     * @param $name
+     * @param $value
+     */
+    public function appendArrEl($name, $value): void
+    {
+        $arr = $this->$name;
+        if (!\is_array($arr)) {
+            $arr = array($value);
+        } else {
+            $arr[] = $value;
+        }
+        $this->$name = $arr;
     }
 }
