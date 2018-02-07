@@ -163,13 +163,11 @@ abstract class AbstractData
      */
     public function setArrEl($name, $key, $value): void
     {
-        $arr = $this->$name;
-        if (!\is_array($arr)) {
-            $arr = array($key => $value);
+        if (!isset($this->dataStore__[$name]) || !\is_array($this->dataStore__[$name])) {
+            $this->dataStore__[$name] = array($key => $value);
         } else {
-            $arr[$key] = $value;
+            $this->dataStore__[$name][$key] = $value;
         }
-        $this->$name = $arr;
     }
 
     /**
@@ -179,12 +177,10 @@ abstract class AbstractData
      */
     public function appendArrEl($name, $value): void
     {
-        $arr = $this->$name;
-        if (!\is_array($arr)) {
-            $arr = array($value);
+        if (!isset($this->dataStore__[$name]) || !\is_array($this->dataStore__[$name])) {
+            $this->dataStore__[$name] = array($value);
         } else {
-            $arr[] = $value;
+            $this->dataStore__[$name][] = $value;
         }
-        $this->$name = $arr;
     }
 }
