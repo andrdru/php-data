@@ -75,9 +75,10 @@ abstract class AbstractData
     /**
      * get all stored data as array
      * @param string $keys ='' keys to get, comma delimited
+     * @param bool $skipNull =false clear null values
      * @return array
      */
-    public function getArray($keys = ''): array
+    public function getArray($keys = '', $skipNull = false): array
     {
         if (!$keys) {
             return $this->dataStore__;
@@ -85,7 +86,7 @@ abstract class AbstractData
         $ans = array();
         $keysArr = explode(',', $keys);
         foreach ($keysArr as $el) {
-            if ($this->isSet($el)) {
+            if (!$skipNull || $this->isSet($el)) {
                 $ans[$el] = $this->$el;
             }
         }
