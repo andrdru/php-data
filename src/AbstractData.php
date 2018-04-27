@@ -14,9 +14,9 @@ abstract class AbstractData
     }
 
     /**
-     * @var array $dataStore__ data store
+     * @var array $data data store
      */
-    private $dataStore__ = array();
+    private $data = array();
 
     /**
      * is data setted
@@ -25,7 +25,7 @@ abstract class AbstractData
      */
     public function __isset($name)
     {
-        return isset($this->dataStore__[$name]);
+        return isset($this->data[$name]);
     }
 
     /**
@@ -35,7 +35,7 @@ abstract class AbstractData
      */
     public function __set($name, $value)
     {
-        $this->dataStore__[$name] = $value;
+        $this->data[$name] = $value;
     }
 
     /**
@@ -45,10 +45,10 @@ abstract class AbstractData
      */
     public function &__get($name)
     {
-        if (!isset($this->dataStore__[$name])) {
-            $this->dataStore__[$name] = null;
+        if (!isset($this->data[$name])) {
+            $this->data[$name] = null;
         }
-        return $this->dataStore__[$name];
+        return $this->data[$name];
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class AbstractData
     public function getArray($keys = '', $skipNull = false): array
     {
         if (!$keys) {
-            return $this->dataStore__;
+            return $this->data;
         }
         $ans = array();
         $keysArr = explode(',', $keys);
@@ -113,7 +113,7 @@ abstract class AbstractData
             foreach ($namesArr as $el) {
                 if (isset($this->$el)) {
                     if ($getValue) {
-                        $ans[$el] = $this->dataStore__[$el];
+                        $ans[$el] = $this->data[$el];
                     }
                 } else {
                     $ans = false;
@@ -127,32 +127,50 @@ abstract class AbstractData
         return $ans;
     }
 
-    public function value($moveCursor = true)
+    public function current($moveCursor = true)
     {
-        $ans = current($this->dataStore__);
+        $ans = current($this->data);
         if ($moveCursor) {
-            next($this->dataStore__);
+            next($this->data);
         }
         return $ans;
     }
 
     public function key($moveCursor = true)
     {
-        $ans = key($this->dataStore__);
+        $ans = key($this->data);
         if ($moveCursor) {
-            next($this->dataStore__);
+            next($this->data);
         }
         return $ans;
     }
 
     public function reset(): void
     {
-        reset($this->dataStore__);
+        reset($this->data);
     }
 
+    public function next(): void
+    {
+        next($this->data);
+    }
+
+    public function prev(): void
+    {
+        prev($this->data);
+    }
+
+    public function end()
+    {
+        return end($this->data);
+    }
+
+    /**
+     * @return int
+     */
     public function count(): int
     {
-        return \count($this->dataStore__);
+        return \count($this->data);
     }
 
     /**
@@ -164,10 +182,10 @@ abstract class AbstractData
      */
     public function setArrEl($name, $key, $value): void
     {
-        if (!isset($this->dataStore__[$name]) || !\is_array($this->dataStore__[$name])) {
-            $this->dataStore__[$name] = array($key => $value);
+        if (!isset($this->data[$name]) || !\is_array($this->data[$name])) {
+            $this->data[$name] = array($key => $value);
         } else {
-            $this->dataStore__[$name][$key] = $value;
+            $this->data[$name][$key] = $value;
         }
     }
 
@@ -179,10 +197,10 @@ abstract class AbstractData
      */
     public function appendArrEl($name, $value): void
     {
-        if (!isset($this->dataStore__[$name]) || !\is_array($this->dataStore__[$name])) {
-            $this->dataStore__[$name] = array($value);
+        if (!isset($this->data[$name]) || !\is_array($this->data[$name])) {
+            $this->data[$name] = array($value);
         } else {
-            $this->dataStore__[$name][] = $value;
+            $this->data[$name][] = $value;
         }
     }
 }

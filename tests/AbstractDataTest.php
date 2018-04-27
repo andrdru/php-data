@@ -33,6 +33,8 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(null, $stub->test);
         $stub->test = array();
         $this->assertEquals(array(), $stub->test);
+        $stub->data = 'mydata';
+        $this->assertEquals('mydata', $stub->data);
     }
 
     public function testIsSet(): void
@@ -142,6 +144,9 @@ class AbstractDataTest extends TestCase
         $stub->myarr = array();
         $this->assertEquals(array(), $stub->myarr);
 
+        $stub->myarr = array('kk');
+        $this->assertEquals(array('kk'), $stub->myarr);
+
         $stub->myarr2[0] = 123;
         $this->assertEquals(array(123), $stub->myarr2);
 
@@ -151,6 +156,9 @@ class AbstractDataTest extends TestCase
         $stub->myarr22[0] = 123;
         $stub->myarr22[1] = 456;
         $this->assertEquals(array(123, 456), $stub->myarr22);
+
+        $this->assertEquals(array('myarr22' => array(123, 456)), $stub->getArray('myarr22'));
+        $this->assertEquals(array('invalidName' => null), $stub->getArray('invalidName'));
 
         $stub->myarr3[1] = 123;
         $this->assertEquals(array(1 => 123), $stub->myarr3);
