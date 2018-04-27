@@ -22,6 +22,21 @@ $obj->myarr[0] = 123;
 $obj->myarr[1] = 456;
 var_dump($obj->myarr); //array(2) { [0] =>int(123) [1] =>int(456) }
 ```
+- store multi-dimensional arrays 
+```php
+$obj->myarr['param']['subparam']['subsub']='value';
+
+/* 
+array (size=1)
+  'param' => 
+    array (size=1)
+      'subparam' => 
+        array (size=1)
+          'subsub' => string 'value' (length=5)
+*/
+var_dump($obj->myarr);
+
+```
 
 - init properties from associative array
 ```php
