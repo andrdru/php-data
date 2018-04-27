@@ -13,7 +13,7 @@ class AbstractDataTest extends TestCase
 {
     protected $obj_;
 
-    public function testSetGet()
+    public function testSetGet(): void
     {
         /**
          * @var $stub AbstractData
@@ -35,7 +35,7 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(array(), $stub->test);
     }
 
-    public function testIsSetted()
+    public function testIsSet(): void
     {
         /**
          * @var $stub AbstractData
@@ -54,9 +54,8 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(array('test' => 123, 'test2' => 456), $stub->isSet('test,test2', true));
     }
 
-    public function testSetArray()
+    public function testSetArray(): void
     {
-        $func = 'setArray';
         /**
          * @var $stub AbstractData
          */
@@ -74,9 +73,8 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(false, $ans);
     }
 
-    public function testGetKeys()
+    public function testGetKeys(): void
     {
-        $func = 'getArray';
         /**
          * @var $stub AbstractData
          */
@@ -98,9 +96,8 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(array('test2' => 456), $ans);
     }
 
-    public function testSetArrEl()
+    public function testSetArrEl(): void
     {
-        $func = 'setArrEl';
         /**
          * @var $stub AbstractData
          */
@@ -117,9 +114,8 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(array('key' => 'val2'), $ans);
     }
 
-    public function testAppendArrEl()
+    public function testAppendArrEl(): void
     {
-        $func = 'appendArrEl';
         /**
          * @var $stub AbstractData
          */
@@ -134,5 +130,35 @@ class AbstractDataTest extends TestCase
         $stub->appendArrEl('test', 'val2');
         $ans = $stub->test;
         $this->assertEquals(array(0 => 'val', 1 => 'val2'), $ans);
+    }
+
+    public function testCreateArrEl(): void
+    {
+        /**
+         * @var AbstractData
+         */
+        $stub = $this->getMockForAbstractClass(Data\AbstractData::class);
+
+        $stub->myarr = array();
+        $this->assertEquals(array(), $stub->myarr);
+
+        $stub->myarr2[0] = 123;
+        $this->assertEquals(array(123), $stub->myarr2);
+
+        $stub->myarr2['zaz'] = 'testme';
+        $this->assertEquals(array(123, 'zaz' => 'testme'), $stub->myarr2);
+
+        $stub->myarr22[0] = 123;
+        $stub->myarr22[1] = 456;
+        $this->assertEquals(array(123, 456), $stub->myarr22);
+
+        $stub->myarr3[1] = 123;
+        $this->assertEquals(array(1 => 123), $stub->myarr3);
+
+        $stub->myarr4[1][1] = 123;
+        $this->assertEquals(array(1 => array(1 => 123)), $stub->myarr4);
+
+        $stub->myarr5[1][1][1] = 123;
+        $this->assertEquals(array(1 => array(1 => array(1 => 123))), $stub->myarr5);
     }
 }

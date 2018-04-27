@@ -45,11 +45,10 @@ abstract class AbstractData
      */
     public function &__get($name)
     {
-        $ans = null;
-        if ($this->isSet($name)) {
-            $ans = $this->dataStore__[$name];
+        if (!isset($this->dataStore__[$name])) {
+            $this->dataStore__[$name] = null;
         }
-        return $ans;
+        return $this->dataStore__[$name];
     }
 
     /**
@@ -161,6 +160,7 @@ abstract class AbstractData
      * @param $name
      * @param $key
      * @param $value
+     * @deprecated use direct array setting instead
      */
     public function setArrEl($name, $key, $value): void
     {
@@ -175,6 +175,7 @@ abstract class AbstractData
      * Append value to array
      * @param $name
      * @param $value
+     * @deprecated use direct array appending instead
      */
     public function appendArrEl($name, $value): void
     {
