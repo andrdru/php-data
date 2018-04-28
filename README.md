@@ -16,7 +16,7 @@ $obj = new MyClass();
 
 - store properties
 ```php
-$obj->myvar="mydata";
+$obj->myvar='mydata';
 var_dump($obj->myvar); //string(6) "mydata"
 ```
 
@@ -25,6 +25,10 @@ var_dump($obj->myvar); //string(6) "mydata"
 $obj->myarr[0] = 123;
 $obj->myarr[1] = 456;
 var_dump($obj->myarr); //array(2) { [0] =>int(123) [1] =>int(456) }
+```
+```php
+$obj->myarr[] = 123;
+var_dump($obj->myarr); //array(1) { [0] =>int(123) }
 ```
 - store multi-dimensional arrays 
 ```php
@@ -40,6 +44,20 @@ array (size=1)
 */
 var_dump($obj->myarr);
 
+```
+```php
+$obj->myarr[][] = 'somedata';
+
+/*
+array(1) {
+  [0] =>
+  array(1) {
+    [0] =>
+    string(8) "somedata"
+  }
+}
+*/
+var_dump($obj->myarr);
 ```
 
 - init properties from associative array

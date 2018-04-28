@@ -168,5 +168,11 @@ class AbstractDataTest extends TestCase
 
         $stub->myarr5[1][1][1] = 123;
         $this->assertEquals(array(1 => array(1 => array(1 => 123))), $stub->myarr5);
+
+        $stub->myarr6[] = 'somedata';
+        $this->assertEquals(array('somedata'), $stub->myarr6);
+
+        $stub->myarr7[][] = 'somedata';
+        $this->assertEquals(array(array('somedata')), $stub->myarr7);
     }
 }
