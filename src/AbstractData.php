@@ -172,35 +172,4 @@ abstract class AbstractData
     {
         return \count($this->data);
     }
-
-    /**
-     * Set key of array with value
-     * @param $name
-     * @param $key
-     * @param $value
-     * @deprecated use direct array setting instead
-     */
-    public function setArrEl($name, $key, $value): void
-    {
-        if (!isset($this->data[$name]) || !\is_array($this->data[$name])) {
-            $this->data[$name] = array($key => $value);
-        } else {
-            $this->data[$name][$key] = $value;
-        }
-    }
-
-    /**
-     * Append value to array
-     * @param $name
-     * @param $value
-     * @deprecated use direct array appending instead
-     */
-    public function appendArrEl($name, $value): void
-    {
-        if (!isset($this->data[$name]) || !\is_array($this->data[$name])) {
-            $this->data[$name] = array($value);
-        } else {
-            $this->data[$name][] = $value;
-        }
-    }
 }

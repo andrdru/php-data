@@ -98,42 +98,6 @@ class AbstractDataTest extends TestCase
         $this->assertEquals(array('test2' => 456), $ans);
     }
 
-    public function testSetArrEl(): void
-    {
-        /**
-         * @var $stub AbstractData
-         */
-        $stub = $this->getMockForAbstractClass(Data\AbstractData::class);
-
-        $stub->setArrEl('test', 'key', 'val');
-        $ans = $stub->test;
-        $this->assertEquals(array('key' => 'val'), $ans);
-
-        $stub->test = array('key' => 'val');
-
-        $stub->setArrEl('test', 'key', 'val2');
-        $ans = $stub->test;
-        $this->assertEquals(array('key' => 'val2'), $ans);
-    }
-
-    public function testAppendArrEl(): void
-    {
-        /**
-         * @var $stub AbstractData
-         */
-        $stub = $this->getMockForAbstractClass(Data\AbstractData::class);
-
-        $stub->appendArrEl('test', 'val');
-        $ans = $stub->test;
-        $this->assertEquals(array(0 => 'val'), $ans);
-
-        $stub->test = array(0 => 'val');
-
-        $stub->appendArrEl('test', 'val2');
-        $ans = $stub->test;
-        $this->assertEquals(array(0 => 'val', 1 => 'val2'), $ans);
-    }
-
     public function testCreateArrEl(): void
     {
         /**
