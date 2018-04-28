@@ -1,6 +1,10 @@
 # php-data
 simple php abstract data class
 
+[![Build Status](https://travis-ci.org/andrdru/php-data.svg?branch=master)](https://travis-ci.org/andrdru/php-data)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0048c270192c4676b5eab2d0b8cd799b)](https://www.codacy.com/app/andrdru/php-data?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=andrdru/php-data&amp;utm_campaign=Badge_Grade)
+
+
 ## Usage
 Simply extends AbstractData
 ```php
