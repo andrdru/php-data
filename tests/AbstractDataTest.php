@@ -139,4 +139,18 @@ class AbstractDataTest extends TestCase
         $stub->myarr7[][] = 'somedata';
         $this->assertEquals(array(array('somedata')), $stub->myarr7);
     }
+
+    public function testUnset(): void
+    {
+        /**
+         * @var AbstractData
+         */
+        $stub = $this->getMockForAbstractClass(AbstractData::class);
+
+        $stub->var1 = 'val';
+        $this->assertEquals(true, $stub->isSet('var1'));
+
+        unset($stub->var1);
+        $this->assertEquals(false, $stub->isSet('var1'));
+    }
 }

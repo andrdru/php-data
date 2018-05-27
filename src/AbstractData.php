@@ -172,4 +172,9 @@ abstract class AbstractData
     {
         return \count($this->data);
     }
+
+    public function __unset($name)
+    {
+        unset($this->data[$name]);
+    }
 }
